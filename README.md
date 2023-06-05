@@ -63,4 +63,5 @@ Test cases will go here.
 <li>Correct UML diagram included</li>
 <li>Lessons learned included</li>
 <li>Comment blocks included with each Java file</li>
+</ul>
 </table>
