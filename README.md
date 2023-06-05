@@ -11,7 +11,7 @@ determines whether the polynomials in that file are in strictly ascending order 
 comparison. 
 
 # Project Requirements
-Project requirements can be found in [Project 2 PDF File](project2.pdf)
+Project requirements can be found in [Project 2 PDF File](Project2.pdf)
 
 # Test Cases
 Test cases will go here.
