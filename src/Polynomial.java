@@ -1,8 +1,10 @@
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
-public class Polynomial implements Comparable<Polynomial>, Iterable<Polynomial.term>{
+public class Polynomial implements Comparable<Polynomial>, Iterable<Polynomial.term> {
     private Node head;
 
+    // Term class
     public static class Term {
         double coefficient;
         int exponent;
@@ -14,7 +16,7 @@ public class Polynomial implements Comparable<Polynomial>, Iterable<Polynomial.t
 
         public String toString() {
             if (exponent == 0) {
-                return "" + coefficient;
+                return String.valueOf(coefficient);
             } else if (exponent == 1) {
                 return coefficient + "x";
             } else {
@@ -23,13 +25,41 @@ public class Polynomial implements Comparable<Polynomial>, Iterable<Polynomial.t
         }
     }
 
-    @Override
-    public int compareTo(Polynomial o) {
-        return 0;
+    // Node class
+    private static class Node {
+        Term term;
+        Node next;
+
+        public Node(Term term, Node next) {
+            this.term = term;
+            this.next = next;
+        }
+    }
+
+    // Constructor
+    public Polynomial(String input) {
+
     }
 
     @Override
     public Iterator<Polynomial.term> iterator() {
-        return null;
+        return new Iterator<Term>() {
+            @Override
+            public boolean hasNext() {
+                return current = head;
+            }
+            @Override
+            public Term next() {
+                if (current == null) throw new NoSuchElementException();
+                Term term = current.term;
+                current = current.next;
+                return term;
+            }
+        };
+    }
+
+    @Override
+    public int compareTo(Polynomial o) {
+        return 0;
     }
 }
