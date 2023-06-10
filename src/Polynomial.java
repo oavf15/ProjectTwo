@@ -1,3 +1,9 @@
+/*
+Polynomial.java
+Oscar Vasquez-Flores
+06/10/2023
+Program that reads a file containing polynomials and checks if the list of polynomials is sorted by strong order and weak order.
+ */
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 

@@ -1,3 +1,9 @@
+/*
+OrderedList.java
+Oscar Vasquez-Flores
+06/10/2023
+This program checks if a list is sorted by strong order and weak order.
+ */
 import java.util.Comparator;
 import java.util.List;
 
