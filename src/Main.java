@@ -6,23 +6,17 @@ public class Main {
     public static void main(String[] args) {
         // Define a comparator for comparing polynomials by their highest exponent
         Comparator<Polynomial> weakOrder = (p1, p2) -> {
-            if (p1.getHighestExponent() < p2.getHighestExponent()) {
-                return -1;
-            } else if (p1.getHighestExponent() > p2.getHighestExponent()) {
-                return 1;
-            } else {
-                return 0;
-            }
+            Polynomial.Term t1 = p1.getHighestTerm();
+            Polynomial.Term t2 = p2.getHighestTerm();
+            return Integer.compare(t1.exponent, t2.exponent);
         };
         // Implement JFileChooser to allow user to select input file
         JFileChooser chooser = new JFileChooser();
+        // Create the list of polynomials
+        List<Polynomial> polynomials = new ArrayList<>();
         int result = chooser.showOpenDialog(null);
         if (result == JFileChooser.APPROVE_OPTION) {
             File file = chooser.getSelectedFile();
-            // Create the list of polynomials
-            List<Polynomial> polynomials = new ArrayList<>();
-
-            //Read the file and create the polynomials
             try (BufferedReader br = new BufferedReader(new FileReader(file))) {
                 String line;
                 while ((line = br.readLine()) != null) {
