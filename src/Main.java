@@ -1,5 +1,6 @@
 import java.util.Comparator;
 import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
         Comparator<Polynomial> weakOrder = (p1, p2) -> {
@@ -11,5 +12,6 @@ public class Main {
                 return 0;
             }
         };
+
     }
 }

@@ -48,6 +48,7 @@ public class Polynomial implements Comparable<Polynomial>, Iterable<Polynomial.t
             public boolean hasNext() {
                 return current = head;
             }
+
             @Override
             public Term next() {
                 if (current == null) throw new NoSuchElementException();
