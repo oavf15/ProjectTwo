@@ -1,66 +1,120 @@
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class Polynomial implements Comparable<Polynomial>, Iterable<Polynomial.term> {
-    private Node head;
+public class Polynomial implements Comparable<Polynomial>, Iterable<Polynomial.Term> {
+    private Term head;
+    private int size;
 
-    // Term class
+    public Polynomial(String input) {
+        String[] parts = input.split(" ");
+        if (parts.length % 2 != 0) {
+            throw new InvalidPolynomialSyntax("Input string should have an even number of elements.");
+        }
+        for (int i = 0; i < parts.length; i += 2) {
+            double coefficient = Double.parseDouble(parts[i]);
+            int exponent = Integer.parseInt(parts[i + 1]);
+            this.addTerm(coefficient, exponent);
+        }
+        size = parts.length / 2;
+    }
+
+    private void addTerm(double coefficient, int exponent) {
+        // Add a term in descending order by exponent
+        Term newTerm = new Term(coefficient, exponent);
+        if (head == null || head.exponent < exponent) {
+            newTerm.next = head;
+            head = newTerm;
+        } else {
+            Term current = head;
+            while (current.next != null && current.next.exponent > exponent) {
+                current = current.next;
+            }
+            newTerm.next = current.next;
+            current.next = newTerm;
+        }
+    }
+
+    public Term getHighestTerm() {
+        return head;
+    }
+
+    public Term getLowestTerm() {
+        Term current = head;
+        while (current.next != null) {
+            current = current.next;
+        }
+        return current;
+    }
+
+    @Override
+    public int compareTo(Polynomial p) {
+        Term thisTerm = this.getHighestTerm();
+        Term pTerm = p.getHighestTerm();
+        while (thisTerm != null && pTerm != null) {
+            if (thisTerm.exponent != pTerm.exponent) {
+                return thisTerm.exponent - pTerm.exponent;
+            } else if (thisTerm.coefficient != pTerm.coefficient) {
+                return Double.compare(thisTerm.coefficient, pTerm.coefficient);
+            }
+            thisTerm = thisTerm.next;
+            pTerm = pTerm.next;
+        }
+        if (thisTerm != null) return 1;  // this has more terms
+        if (pTerm != null) return -1;  // p has more terms
+        return 0;  // equal
+    }
+
+    @Override
+    public Iterator<Term> iterator() {
+        return new PolynomialIterator();
+    }
+
+    @Override
+    public String toString() {
+        if (head == null) return "0";
+        StringBuilder sb = new StringBuilder();
+        for (Term term : this) {
+            sb.append(term.toString());
+        }
+        return sb.toString();
+    }
+
+    private class PolynomialIterator implements Iterator<Term> {
+        private Term current = head;
+
+        @Override
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        @Override
+        public Term next() {
+            if (current == null) {
+                throw new NoSuchElementException();
+            }
+            Term temp = current;
+            current = current.next;
+            return temp;
+        }
+    }
+
     public static class Term {
         double coefficient;
         int exponent;
+        Term next;
 
-        public Term(double coefficient, int exponent) {
+        Term(double coefficient, int exponent) {
             this.coefficient = coefficient;
             this.exponent = exponent;
         }
 
+        @Override
         public String toString() {
-            if (exponent == 0) {
-                return String.valueOf(coefficient);
-            } else if (exponent == 1) {
-                return coefficient + "x";
-            } else {
-                return coefficient + "x^" + exponent;
-            }
+            String coeff = coefficient == 1.0 ? "" : String.valueOf(coefficient);
+            String var = exponent == 0 ? "" : "x";
+            String exp = exponent <= 1 ? "" : "^" + exponent;
+            String termString = coeff + var + exp;
+            return (next == null) ? termString : termString + " + ";
         }
-    }
-
-    // Node class
-    private static class Node {
-        Term term;
-        Node next;
-
-        public Node(Term term, Node next) {
-            this.term = term;
-            this.next = next;
-        }
-    }
-
-    // Constructor
-    public Polynomial(String input) {
-
-    }
-
-    @Override
-    public Iterator<Polynomial.term> iterator() {
-        return new Iterator<Term>() {
-            @Override
-            public boolean hasNext() {
-                return current = head;
-            }
-
-            @Override
-            public Term next() {
-                if (current == null) throw new NoSuchElementException();
-                Term term = current.term;
-                current = current.next;
-                return term;
-            }
-        };
-    }
-
-    @Override
-    public int compareTo(Polynomial o) {
-        return 0;
     }
 }
