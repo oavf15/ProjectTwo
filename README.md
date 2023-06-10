@@ -3,6 +3,7 @@
 - [Project Description](#project-description)
 - [Project Requirements](#project-requirements)
 - [Test Cases](#test-cases)
+- [Test Case Expected Output](#test-case-expected-output)
 - [Project Rubric](#project-rubric)
 
 # Project Description
@@ -24,6 +25,101 @@ Project requirements can be found in [Project 2 PDF File](Project2.pdf)
 * Test Case 8: [Syntax errors - non-integer exponent](src/test_cases/test_case8.txt)
 * Test Case 9: [Polynomial with exponents of 0, 1, and 2](src/test_cases/test_case9.txt)
 * Test Case 10: [Polynomial with exponents of 0, 1, 2, and a syntax error](src/test_cases/test_case10.txt)
+
+# Test Case Expected Output
+<table>
+<tr>
+<th>Test Case</th>
+<th>Expected Output</th>
+</tr>
+<tr>
+<td>1</td>
+<td>
+<ul>
+<li>Strong Order: True</li>
+<li>Weak Order: True</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>2</td>
+<td>
+<ul>
+<li>Strong Order: True</li>
+<li>Weak Order: True</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>3</td>
+<td>
+<ul>
+<li>Strong Order: False</li>
+<li>Weak Order: True</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>4</td>
+<td>
+<ul>
+<li>Strong Order: False</li>
+<li>Weak Order: True</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>5</td>
+<td>
+<ul>
+<li>Strong Order: False</li>
+<li>Weak Order: False</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>6</td>
+<td>
+<ul>
+<li>Strong Order: False</li>
+<li>Weak Order: False</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>7</td>
+<td>
+<ul>
+<li>Syntax Error</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>8</td>
+<td>
+<ul>
+<li>Syntax Error</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>9</td>
+<td>
+<ul>
+<li>Strong Order: True</li>
+<li>Weak Order: True</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>10</td>
+<td>
+<ul>
+<li>Syntax Error</li>
+</ul>
+</td>
+</tr>
+</table>
 
 # Project Rubric
 <table>
