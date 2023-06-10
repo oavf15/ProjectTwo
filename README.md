@@ -14,16 +14,16 @@ comparison.
 Project requirements can be found in [Project 2 PDF File](Project2.pdf)
 
 # Test Cases
-* Test Case 1: [Both strong and weak sorted order](src/test_cases/test_case_1.txt)
-* Test Case 2: [Both strong and weak sorted order](src/test_cases/test_case_2.txt)
-* Test Case 3: [Weak but not strong sorted order](src/test_cases/test_case_3.txt)
-* Test Case 4: [Weak but not strong sorted order](src/test_cases/test_case_4.txt)
-* Test Case 5: [Neither strong nor weak sorted order](src/test_cases/test_case_5.txt)
-* Test Case 6: [Neither strong nor weak sorted order](src/test_cases/test_case_6.txt)
-* Test Case 7: [Syntax errors - wrong exponent order](src/test_cases/test_case_7.txt)
-* Test Case 8: [Syntax errors - non-integer exponent](src/test_cases/test_case_8.txt)
-* Test Case 9: [Polynomial with exponents of 0, 1, and 2](src/test_cases/test_case_9.txt)
-* Test Case 10: [Polynomial with exponents of 0, 1, 2, and a syntax error](src/test_cases/test_case_10.txt)
+* Test Case 1: [Both strong and weak sorted order](src/test_cases/test_case1.txt)
+* Test Case 2: [Both strong and weak sorted order](src/test_cases/test_case2.txt)
+* Test Case 3: [Weak but not strong sorted order](src/test_cases/test_case3.txt)
+* Test Case 4: [Weak but not strong sorted order](src/test_cases/test_case4.txt)
+* Test Case 5: [Neither strong nor weak sorted order](src/test_cases/test_case5.txt)
+* Test Case 6: [Neither strong nor weak sorted order](src/test_cases/test_case6.txt)
+* Test Case 7: [Syntax errors - wrong exponent order](src/test_cases/test_case7.txt)
+* Test Case 8: [Syntax errors - non-integer exponent](src/test_cases/test_case8.txt)
+* Test Case 9: [Polynomial with exponents of 0, 1, and 2](src/test_cases/test_case9.txt)
+* Test Case 10: [Polynomial with exponents of 0, 1, 2, and a syntax error](src/test_cases/test_case10.txt)
 
 # Project Rubric
 <table>
