@@ -4,12 +4,14 @@ Oscar Vasquez-Flores
 06/10/2023
 Program that reads a file containing polynomials and checks if the list of polynomials is sorted by strong order and weak order.
  */
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class Polynomial implements Comparable<Polynomial>, Iterable<Polynomial.Term> {
     private Term head;
     private int size;
+    private int previousExponent = Integer.MAX_VALUE;
 
     public Polynomial(String input) {
         String[] parts = input.split(" ");
@@ -17,8 +19,22 @@ public class Polynomial implements Comparable<Polynomial>, Iterable<Polynomial.T
             throw new InvalidPolynomialSyntax("Input string should have an even number of elements.");
         }
         for (int i = 0; i < parts.length; i += 2) {
-            double coefficient = Double.parseDouble(parts[i]);
-            int exponent = Integer.parseInt(parts[i + 1]);
+            double coefficient;
+            int exponent;
+            try {
+                coefficient = Double.parseDouble(parts[i]);
+            } catch (NumberFormatException e) {
+                throw new InvalidPolynomialSyntax("Coefficients must be real numbers.");
+            }
+            try {
+                exponent = Integer.parseInt(parts[i + 1]);
+            } catch (NumberFormatException e) {
+                throw new InvalidPolynomialSyntax("Exponents must be integers.");
+            }
+            if (exponent >= previousExponent) {  // Add this if block
+                throw new InvalidPolynomialSyntax("Exponents must be in strictly descending order.");
+            }
+            previousExponent = exponent;
             this.addTerm(coefficient, exponent);
         }
         size = parts.length / 2;
@@ -65,9 +81,9 @@ public class Polynomial implements Comparable<Polynomial>, Iterable<Polynomial.T
             thisTerm = thisTerm.next;
             pTerm = pTerm.next;
         }
-        if (thisTerm != null) return 1;  // this has more terms
-        if (pTerm != null) return -1;  // p has more terms
-        return 0;  // equal
+        if (thisTerm != null) return 1;
+        if (pTerm != null) return -1;
+        return 0;
     }
 
     @Override
