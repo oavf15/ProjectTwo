@@ -10,8 +10,6 @@ import java.util.NoSuchElementException;
 
 public class Polynomial implements Comparable<Polynomial>, Iterable<Polynomial.Term> {
     private Term head;
-    private int size;
-    private int previousExponent = Integer.MAX_VALUE;
 
     public Polynomial(String input) {
         String[] parts = input.split(" ");
@@ -31,13 +29,12 @@ public class Polynomial implements Comparable<Polynomial>, Iterable<Polynomial.T
             } catch (NumberFormatException e) {
                 throw new InvalidPolynomialSyntax("Exponents must be integers.");
             }
-            if (exponent >= previousExponent) {  // Add this if block
+            int previousExponent = Integer.MAX_VALUE;
+            if (exponent == previousExponent) {  // Add this if block
                 throw new InvalidPolynomialSyntax("Exponents must be in strictly descending order.");
             }
-            previousExponent = exponent;
             this.addTerm(coefficient, exponent);
         }
-        size = parts.length / 2;
     }
 
     private void addTerm(double coefficient, int exponent) {
@@ -58,14 +55,6 @@ public class Polynomial implements Comparable<Polynomial>, Iterable<Polynomial.T
 
     public Term getHighestTerm() {
         return head;
-    }
-
-    public Term getLowestTerm() {
-        Term current = head;
-        while (current.next != null) {
-            current = current.next;
-        }
-        return current;
     }
 
     @Override
