@@ -11,31 +11,9 @@ import javax.swing.JFileChooser;
 public class Main {
     public static void main(String[] args) {
         // Define a comparator for comparing polynomials by their highest exponent
-        Comparator<Polynomial> weakOrder = (p1, p2) -> {
-            Iterator<Polynomial.Term> t1Iterator = p1.iterator();
-            Iterator<Polynomial.Term> t2Iterator = p2.iterator();
-
-            while (t1Iterator.hasNext() && t2Iterator.hasNext()) {
-                Polynomial.Term t1 = t1Iterator.next();
-                Polynomial.Term t2 = t2Iterator.next();
-
-                if (t1.exponent != t2.exponent) {
-                    return Integer.compare(t1.exponent, t2.exponent);
-                } else if (t1.coefficient != t2.coefficient) {
-                    return Double.compare(t1.coefficient, t2.coefficient);
-                }
-            }
-
-            if (t1Iterator.hasNext()) {
-                return 1;
-            }
-
-            if (t2Iterator.hasNext()) {
-                return -1;
-            }
-
-            return 0;
-        };
+        // determine if the list is sorted by strong order or weak order
+        Comparator<Polynomial> strongOrder = Comparator.comparingInt(p -> p.head.exponent);
+        Comparator<Polynomial> weakOrder = (p1, p2) -> p2.head.exponent - p1.head.exponent;
 
         // Implement JFileChooser to allow user to select input file
         JFileChooser chooser = new JFileChooser();
@@ -59,12 +37,9 @@ public class Main {
                 e.printStackTrace();
             }
         }
-        // Check if the list is sorted by strong order
-        boolean isSortedStrongOrder = OrderedList.checkSorted(polynomials);
-        System.out.println("Is the list sorted by strong order? " + isSortedStrongOrder);
+        // Check if the list of polynomials is sorted by strong order and weak order
+        System.out.println("Strong order: " + OrderedList.checkSorted(polynomials, strongOrder));
+        System.out.println("Weak order: " + OrderedList.checkSorted(polynomials, weakOrder));
 
-        // Check if the list is sorted by weak order
-        boolean isSortedWeakOrder = OrderedList.checkSorted(polynomials, weakOrder);
-        System.out.println("Is the list sorted by weak order? " + isSortedWeakOrder);
     }
 }

@@ -20,11 +20,6 @@ Project requirements can be found in [Project 2 PDF File](Project2.pdf)
 * Test Case 3: [Weak but not strong sorted order](src/test_cases/test_case3.txt)
 * Test Case 4: [Weak but not strong sorted order](src/test_cases/test_case4.txt)
 * Test Case 5: [Neither strong nor weak sorted order](src/test_cases/test_case5.txt)
-* Test Case 6: [Neither strong nor weak sorted order](src/test_cases/test_case6.txt)
-* Test Case 7: [Syntax errors - wrong exponent order](src/test_cases/test_case7.txt)
-* Test Case 8: [Syntax errors - non-integer exponent](src/test_cases/test_case8.txt)
-* Test Case 9: [Polynomial with exponents of 0, 1, and 2](src/test_cases/test_case9.txt)
-* Test Case 10: [Polynomial with exponents of 0, 1, 2, and a syntax error](src/test_cases/test_case10.txt)
 
 # Test Case Expected Output
 <table>

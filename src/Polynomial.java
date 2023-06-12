@@ -9,7 +9,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class Polynomial implements Comparable<Polynomial>, Iterable<Polynomial.Term> {
-    private Term head;
+    Term head;
 
     public Polynomial(String input) {
         String[] parts = input.split(" ");
@@ -38,13 +38,7 @@ public class Polynomial implements Comparable<Polynomial>, Iterable<Polynomial.T
         }
     }
 
-    public int getTotalDegree() {
-        int totalDegree = 0;
-        for (Term term : this) {
-            totalDegree += term.exponent;
-        }
-        return totalDegree;
-    }
+
 
     private void addTerm(double coefficient, int exponent) {
         Term newTerm = new Term(coefficient, exponent);
@@ -59,10 +53,6 @@ public class Polynomial implements Comparable<Polynomial>, Iterable<Polynomial.T
             newTerm.next = current.next;
             current.next = newTerm;
         }
-    }
-
-    public Term getHighestTerm() {
-        return head;
     }
 
     @Override
