@@ -16,7 +16,6 @@ public class Polynomial implements Comparable<Polynomial>, Iterable<Polynomial.T
         if (parts.length % 2 != 0) {
             throw new InvalidPolynomialSyntax("Input string should have an even number of elements.");
         }
-        int previousExponent = Integer.MAX_VALUE;
         for (int i = 0; i < parts.length; i += 2) {
             double coefficient;
             int exponent;
@@ -30,14 +29,19 @@ public class Polynomial implements Comparable<Polynomial>, Iterable<Polynomial.T
             } catch (NumberFormatException e) {
                 throw new InvalidPolynomialSyntax("Exponents must be integers.");
             }
-            if (exponent >= previousExponent) {
-                throw new InvalidPolynomialSyntax("Exponents must be in strictly descending order.");
-            }
-            previousExponent = exponent;
             this.addTerm(coefficient, exponent);
         }
-    }
 
+        Term current = head;
+        int previousExponent = Integer.MAX_VALUE;
+        while (current != null) {
+            if (current.exponent >= previousExponent) {
+                throw new InvalidPolynomialSyntax("Exponents must be in strictly descending order.");
+            }
+            previousExponent = current.exponent;
+            current = current.next;
+        }
+    }
 
 
     private void addTerm(double coefficient, int exponent) {
