@@ -38,8 +38,15 @@ public class Polynomial implements Comparable<Polynomial>, Iterable<Polynomial.T
         }
     }
 
+    public int getTotalDegree() {
+        int totalDegree = 0;
+        for (Term term : this) {
+            totalDegree += term.exponent;
+        }
+        return totalDegree;
+    }
+
     private void addTerm(double coefficient, int exponent) {
-        // Add a term in descending order by exponent
         Term newTerm = new Term(coefficient, exponent);
         if (head == null || head.exponent < exponent) {
             newTerm.next = head;
@@ -60,13 +67,16 @@ public class Polynomial implements Comparable<Polynomial>, Iterable<Polynomial.T
 
     @Override
     public int compareTo(Polynomial p) {
-        Term thisTerm = this.getHighestTerm();
-        Term pTerm = p.getHighestTerm();
+        Term thisTerm = this.head;
+        Term pTerm = p.head;
         while (thisTerm != null && pTerm != null) {
             if (thisTerm.exponent != pTerm.exponent) {
-                return thisTerm.exponent - pTerm.exponent;
-            } else if (thisTerm.coefficient != pTerm.coefficient) {
-                return Double.compare(thisTerm.coefficient, pTerm.coefficient);
+                return Integer.compare(thisTerm.exponent, pTerm.exponent);
+            } else {
+                int coefCompare = Double.compare(pTerm.coefficient, thisTerm.coefficient);
+                if (coefCompare != 0) {
+                    return coefCompare;
+                }
             }
             thisTerm = thisTerm.next;
             pTerm = pTerm.next;

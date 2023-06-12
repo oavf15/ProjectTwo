@@ -12,10 +12,31 @@ public class Main {
     public static void main(String[] args) {
         // Define a comparator for comparing polynomials by their highest exponent
         Comparator<Polynomial> weakOrder = (p1, p2) -> {
-            Polynomial.Term t1 = p1.getHighestTerm();
-            Polynomial.Term t2 = p2.getHighestTerm();
-            return Integer.compare(t1.exponent, t2.exponent);
+            Iterator<Polynomial.Term> t1Iterator = p1.iterator();
+            Iterator<Polynomial.Term> t2Iterator = p2.iterator();
+
+            while (t1Iterator.hasNext() && t2Iterator.hasNext()) {
+                Polynomial.Term t1 = t1Iterator.next();
+                Polynomial.Term t2 = t2Iterator.next();
+
+                if (t1.exponent != t2.exponent) {
+                    return Integer.compare(t1.exponent, t2.exponent);
+                } else if (t1.coefficient != t2.coefficient) {
+                    return Double.compare(t1.coefficient, t2.coefficient);
+                }
+            }
+
+            if (t1Iterator.hasNext()) {
+                return 1;
+            }
+
+            if (t2Iterator.hasNext()) {
+                return -1;
+            }
+
+            return 0;
         };
+
         // Implement JFileChooser to allow user to select input file
         JFileChooser chooser = new JFileChooser();
         // Create the list of polynomials
